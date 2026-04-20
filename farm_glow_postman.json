@@ -1,0 +1,3158 @@
+{
+  "info": {
+    "name": "Farm Glow API",
+    "description": "Complete API collection for Farm Glow Backend - Agricultural Management System",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register Company",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"company_name\": \"My Farm Inc\",\n  \"email\": \"owner@myfarm.com\",\n  \"password\": \"SecurePassword123!\",\n  \"password_confirmation\": \"SecurePassword123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/auth/register-company",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "auth", "register-company"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"owner@myfarm.com\",\n  \"password\": \"SecurePassword123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/auth/login",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/auth/me",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/auth/refresh-token",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "auth", "refresh-token"]
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"current_password\": \"SecurePassword123!\",\n  \"password\": \"NewPassword123!\",\n  \"password_confirmation\": \"NewPassword123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/auth/change-password",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "auth", "change-password"]
+            }
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/auth/logout",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "auth", "logout"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Farms",
+      "item": [
+        {
+          "name": "List Farms",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/farms?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "farms"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Farm",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Green Valley Farm\",\n  \"location\": \"123 Farm Road\",\n  \"city\": \"Springfield\",\n  \"state\": \"Illinois\",\n  \"country\": \"USA\",\n  \"postal_code\": \"62701\",\n  \"description\": \"A modern agricultural farm\",\n  \"total_area\": 500.50\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/farms",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "farms"]
+            }
+          }
+        },
+        {
+          "name": "Get Farm",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/farms/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "farms", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Farm",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Green Valley Farm Updated\",\n  \"description\": \"Updated farm description\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/farms/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "farms", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Farm",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/farms/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "farms", "1"]
+            }
+          }
+        },
+        {
+          "name": "Farm Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/farms/1/summary",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "farms", "1", "summary"]
+            }
+          }
+        },
+        {
+          "name": "Farm Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/farms/1/stats",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "farms", "1", "stats"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Fields",
+      "item": [
+        {
+          "name": "List Fields",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/fields?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "fields"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Field",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"name\": \"North Field\",\n  \"area\": 100.5,\n  \"soil_type\": \"Loamy\",\n  \"irrigation_type\": \"Drip\",\n  \"status\": \"active\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/fields",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "fields"]
+            }
+          }
+        },
+        {
+          "name": "Get Field",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/fields/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "fields", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Field",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"North Field Updated\",\n  \"status\": \"fallow\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/fields/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "fields", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Field",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/fields/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "fields", "1"]
+            }
+          }
+        },
+        {
+          "name": "Field Map",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/fields/1/map",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "fields", "1", "map"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Crops",
+      "item": [
+        {
+          "name": "List Crops",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/crops?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "crops"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Crop",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"field_id\": 1,\n  \"name\": \"Wheat\",\n  \"variety\": \"Winter Wheat\",\n  \"planting_date\": \"2026-04-01\",\n  \"expected_harvest_date\": \"2026-08-15\",\n  \"quantity_planted\": 100,\n  \"unit\": \"kg\",\n  \"status\": \"growing\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/crops",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "crops"]
+            }
+          }
+        },
+        {
+          "name": "Get Crop",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/crops/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "crops", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Crop",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"ready_for_harvest\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/crops/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "crops", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Crop",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/crops/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "crops", "1"]
+            }
+          }
+        },
+        {
+          "name": "Record Health",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"health_status\": \"healthy\",\n  \"notes\": \"Plant looks great\",\n  \"recorded_date\": \"2026-04-20\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/crops/1/health",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "crops", "1", "health"]
+            }
+          }
+        },
+        {
+          "name": "Get Health",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/crops/1/health",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "crops", "1", "health"]
+            }
+          }
+        },
+        {
+          "name": "Record Harvest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity_harvested\": 95,\n  \"unit\": \"kg\",\n  \"harvest_date\": \"2026-08-20\",\n  \"notes\": \"Excellent yield\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/crops/1/harvest",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "crops", "1", "harvest"]
+            }
+          }
+        },
+        {
+          "name": "Get Yield",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/crops/1/yield",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "crops", "1", "yield"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Livestock",
+      "item": [
+        {
+          "name": "List Livestock",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/livestock?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "livestock"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Livestock",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shed_id\": 1,\n  \"livestock_type_id\": 1,\n  \"tag_number\": \"COW-001\",\n  \"name\": \"Bessie\",\n  \"breed\": \"Holstein\",\n  \"date_of_birth\": \"2022-01-15\",\n  \"weight\": 600,\n  \"gender\": \"female\",\n  \"status\": \"healthy\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/livestock",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "livestock"]
+            }
+          }
+        },
+        {
+          "name": "Get Livestock",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/livestock/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "livestock", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Livestock",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"weight\": 620,\n  \"status\": \"excellent\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/livestock/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "livestock", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Livestock",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/livestock/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "livestock", "1"]
+            }
+          }
+        },
+        {
+          "name": "Record Health",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"health_status\": \"healthy\",\n  \"notes\": \"Regular checkup passed\",\n  \"recorded_date\": \"2026-04-20\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/livestock/1/health",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "livestock", "1", "health"]
+            }
+          }
+        },
+        {
+          "name": "Get Health",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/livestock/1/health",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "livestock", "1", "health"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sheds",
+      "item": [
+        {
+          "name": "List Sheds",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/sheds?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "sheds"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Shed",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"name\": \"Barn A\",\n  \"capacity\": 50,\n  \"total_units\": 100,\n  \"occupied_units\": 45\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/sheds",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "sheds"]
+            }
+          }
+        },
+        {
+          "name": "Get Shed",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/sheds/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "sheds", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Shed",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"occupied_units\": 48\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/sheds/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "sheds", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Shed",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/sheds/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "sheds", "1"]
+            }
+          }
+        },
+        {
+          "name": "Record Cleaning",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cleaning_date\": \"2026-04-20\",\n  \"notes\": \"Full cleaning completed\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/sheds/1/clean",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "sheds", "1", "clean"]
+            }
+          }
+        },
+        {
+          "name": "Get Shed Grid",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/sheds/1/grid",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "sheds", "1", "grid"]
+            }
+          }
+        },
+        {
+          "name": "Get Shed Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/sheds/1/stats",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "sheds", "1", "stats"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Breeding",
+      "item": [
+        {
+          "name": "List Breeding Records",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/breeding?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "breeding"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Breeding Record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sire_id\": 1,\n  \"dam_id\": 2,\n  \"breeding_date\": \"2026-03-01\",\n  \"expected_birth_date\": \"2026-06-01\",\n  \"notes\": \"Planned breeding\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/breeding",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "breeding"]
+            }
+          }
+        },
+        {
+          "name": "Get Breeding Record",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/breeding/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "breeding", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Breeding Record",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notes\": \"Updated breeding info\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/breeding/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "breeding", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Breeding Record",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/breeding/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "breeding", "1"]
+            }
+          }
+        },
+        {
+          "name": "Record Birth",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"birth_date\": \"2026-06-05\",\n  \"offspring_count\": 1,\n  \"notes\": \"Healthy calf born\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/breeding/1/birth",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "breeding", "1", "birth"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Workers",
+      "item": [
+        {
+          "name": "List Workers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/workers?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "workers"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Worker",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"+1-555-0100\",\n  \"role\": \"farmer\",\n  \"date_of_birth\": \"1990-05-15\",\n  \"salary\": 30000,\n  \"employment_date\": \"2025-01-01\",\n  \"status\": \"active\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/workers",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "workers"]
+            }
+          }
+        },
+        {
+          "name": "Get Worker",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/workers/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "workers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Worker",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"salary\": 32000,\n  \"status\": \"inactive\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/workers/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "workers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Worker",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/workers/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "workers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Worker Attendance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/workers/1/attendance",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "workers", "1", "attendance"]
+            }
+          }
+        },
+        {
+          "name": "Get Worker Performance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/workers/1/performance",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "workers", "1", "performance"]
+            }
+          }
+        },
+        {
+          "name": "Get Worker Payroll",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/workers/1/payroll",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "workers", "1", "payroll"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Schedules",
+      "item": [
+        {
+          "name": "List Schedules",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/schedules?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "schedules"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Schedule",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"worker_id\": 1,\n  \"scheduled_date\": \"2026-04-21\",\n  \"start_time\": \"06:00\",\n  \"end_time\": \"14:00\",\n  \"task\": \"Field maintenance\",\n  \"status\": \"scheduled\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/schedules",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "schedules"]
+            }
+          }
+        },
+        {
+          "name": "Get Schedule",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/schedules/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "schedules", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Schedule",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"completed\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/schedules/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "schedules", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Schedule",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/schedules/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "schedules", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Schedules by Date",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/schedules/by-date?date=2026-04-21",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "schedules", "by-date"],
+              "query": [
+                {
+                  "key": "date",
+                  "value": "2026-04-21"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Attendance",
+      "item": [
+        {
+          "name": "List Attendance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/attendance?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "attendance"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Record Attendance",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"worker_id\": 1,\n  \"attendance_date\": \"2026-04-20\",\n  \"check_in_time\": \"06:00\",\n  \"check_out_time\": \"14:00\",\n  \"status\": \"present\",\n  \"notes\": \"Regular shift\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/attendance/record",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "attendance", "record"]
+            }
+          }
+        },
+        {
+          "name": "Get Monthly Attendance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/attendance/monthly?worker_id=1&month=04&year=2026",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "attendance", "monthly"],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "1"
+                },
+                {
+                  "key": "month",
+                  "value": "04"
+                },
+                {
+                  "key": "year",
+                  "value": "2026"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "item": [
+        {
+          "name": "List Inventory Categories",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/categories?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "categories"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Inventory Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Seeds\",\n  \"description\": \"Agricultural seeds\",\n  \"icon\": \"leaf\",\n  \"color\": \"#4CAF50\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/categories",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "categories"]
+            }
+          }
+        },
+        {
+          "name": "Get Inventory Category",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/categories/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "categories", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Inventory Category",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Premium Seeds\",\n  \"description\": \"High quality agricultural seeds\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/categories/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "categories", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Inventory Category",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/categories/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "categories", "1"]
+            }
+          }
+        },
+        {
+          "name": "List Inventory Items",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/inventory?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Inventory Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"category_id\": 1,\n  \"supplier_id\": 1,\n  \"name\": \"Wheat Seeds\",\n  \"sku\": \"WHEAT-001\",\n  \"unit\": \"kg\",\n  \"quantity\": 100,\n  \"min_quantity\": 20,\n  \"cost_per_unit\": 5.50,\n  \"expiry_date\": \"2026-12-31\",\n  \"location\": \"Warehouse A\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/inventory",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory"]
+            }
+          }
+        },
+        {
+          "name": "Get Inventory Item",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Inventory Item",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quantity\": 95,\n  \"location\": \"Warehouse B\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Inventory Item",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Low Stock Items",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/low-stock",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "low-stock"]
+            }
+          }
+        },
+        {
+          "name": "Get Expired Items",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/expired",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "expired"]
+            }
+          }
+        },
+        {
+          "name": "Get Inventory Value",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/value",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "value"]
+            }
+          }
+        },
+        {
+          "name": "List Inventory Transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/transactions",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "transactions"]
+            }
+          }
+        },
+        {
+          "name": "Record Item Use",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inventory_item_id\": 1,\n  \"type\": \"use\",\n  \"quantity\": 5,\n  \"notes\": \"Used for field preparation\",\n  \"transaction_date\": \"2026-04-20\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/use",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "use"]
+            }
+          }
+        },
+        {
+          "name": "Record Restock",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inventory_item_id\": 1,\n  \"type\": \"restock\",\n  \"quantity\": 50,\n  \"cost_per_unit\": 5.50,\n  \"notes\": \"New stock received\",\n  \"reference_number\": \"PO-12345\",\n  \"transaction_date\": \"2026-04-20\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/restock",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "restock"]
+            }
+          }
+        },
+        {
+          "name": "Get Item Transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/inventory/transactions/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "inventory", "transactions", "1"]
+            }
+          }
+        },
+        {
+          "name": "List Suppliers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/suppliers?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "suppliers"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Supplier",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Agricultural Supplies Co\",\n  \"email\": \"sales@agrisupplies.com\",\n  \"phone\": \"+1-555-0200\",\n  \"address\": \"456 Supply Lane\",\n  \"city\": \"Springfield\",\n  \"state\": \"Illinois\",\n  \"country\": \"USA\",\n  \"website\": \"https://agrisupplies.com\",\n  \"notes\": \"Main supplier for seeds and equipment\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/suppliers",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "suppliers"]
+            }
+          }
+        },
+        {
+          "name": "Get Supplier",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/suppliers/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "suppliers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Supplier",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"phone\": \"+1-555-0201\",\n  \"website\": \"https://agrisupplies.com/new\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/suppliers/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "suppliers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Supplier",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/suppliers/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "suppliers", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Supplier Items",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/suppliers/1/items",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "suppliers", "1", "items"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Financial",
+      "item": [
+        {
+          "name": "List Accounts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/accounts?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "accounts"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Farm Operating Account\",\n  \"type\": \"checking\",\n  \"balance\": 50000,\n  \"currency\": \"USD\",\n  \"account_number\": \"1234567890\",\n  \"bank_name\": \"Farm Bank\",\n  \"description\": \"Main operating account\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/accounts",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "accounts"]
+            }
+          }
+        },
+        {
+          "name": "Get Account",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/accounts/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "accounts", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Account",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"balance\": 55000,\n  \"description\": \"Updated account info\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/accounts/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "accounts", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Account",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/accounts/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "accounts", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Account Balance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/accounts/1/balance",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "accounts", "1", "balance"]
+            }
+          }
+        },
+        {
+          "name": "List Transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/transactions?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "transactions"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Transaction",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_id\": 1,\n  \"type\": \"expense\",\n  \"amount\": 500,\n  \"category\": \"Supplies\",\n  \"description\": \"Farm supplies purchase\",\n  \"transaction_date\": \"2026-04-20\",\n  \"reference\": \"INV-12345\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/transactions",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "transactions"]
+            }
+          }
+        },
+        {
+          "name": "Get Transaction",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/transactions/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "transactions", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Transaction",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Updated description\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/transactions/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "transactions", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Transaction",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/transactions/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "transactions", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Transactions Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/transactions/summary?start_date=2026-04-01&end_date=2026-04-30",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "transactions", "summary"],
+              "query": [
+                {
+                  "key": "start_date",
+                  "value": "2026-04-01"
+                },
+                {
+                  "key": "end_date",
+                  "value": "2026-04-30"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "List Invoices",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/invoices?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invoices"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Invoice",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoice_number\": \"INV-2026-001\",\n  \"account_id\": 1,\n  \"amount\": 1500,\n  \"description\": \"Crop harvest services\",\n  \"due_date\": \"2026-05-20\",\n  \"invoice_date\": \"2026-04-20\",\n  \"status\": \"issued\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/invoices",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invoices"]
+            }
+          }
+        },
+        {
+          "name": "Get Invoice",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/invoices/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invoices", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Invoice",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"sent\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/invoices/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invoices", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Invoice",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/invoices/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invoices", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Overdue Invoices",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/invoices/overdue",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invoices", "overdue"]
+            }
+          }
+        },
+        {
+          "name": "Mark Invoice as Paid",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paid_date\": \"2026-04-25\",\n  \"payment_method\": \"bank_transfer\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/invoices/1/mark-paid",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invoices", "1", "mark-paid"]
+            }
+          }
+        },
+        {
+          "name": "List Budgets",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/budgets?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "budgets"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Budget",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": \"Operations\",\n  \"budgeted_amount\": 10000,\n  \"fiscal_year\": 2026,\n  \"description\": \"Annual operations budget\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/budgets",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "budgets"]
+            }
+          }
+        },
+        {
+          "name": "Get Budget",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/budgets/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "budgets", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update Budget",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"budgeted_amount\": 12000,\n  \"description\": \"Updated budget allocation\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/budgets/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "budgets", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Budget",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/budgets/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "budgets", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Budget Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/budgets/summary",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "budgets", "summary"]
+            }
+          }
+        },
+        {
+          "name": "List Reports",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/reports?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "reports"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Report",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/reports/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "reports", "1"]
+            }
+          }
+        },
+        {
+          "name": "Generate Report",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"report_type\": \"financial_summary\",\n  \"start_date\": \"2026-04-01\",\n  \"end_date\": \"2026-04-30\",\n  \"format\": \"pdf\",\n  \"include_charts\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/reports/generate",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "reports", "generate"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get Current User Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/me",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users", "me"]
+            }
+          }
+        },
+        {
+          "name": "Update Current User Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"email\": \"john@example.com\",\n  \"phone\": \"+1-555-0100\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/users/me",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users", "me"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User Preferences",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/me/preferences",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users", "me", "preferences"]
+            }
+          }
+        },
+        {
+          "name": "Update Current User Preferences",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"theme\": \"dark\",\n  \"language\": \"en\",\n  \"timezone\": \"America/Chicago\",\n  \"notifications_enabled\": true,\n  \"email_notifications\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/users/me/preferences",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users", "me", "preferences"]
+            }
+          }
+        },
+        {
+          "name": "Change Current User Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"current_password\": \"OldPassword123!\",\n  \"password\": \"NewPassword123!\",\n  \"password_confirmation\": \"NewPassword123!\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/users/me/change-password",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users", "me", "change-password"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User Activity",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/me/activity",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users", "me", "activity"]
+            }
+          }
+        },
+        {
+          "name": "List All Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith\",\n  \"email\": \"jane@example.com\",\n  \"password\": \"SecurePassword123!\",\n  \"password_confirmation\": \"SecurePassword123!\",\n  \"role\": \"farmer\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/users",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users"]
+            }
+          }
+        },
+        {
+          "name": "Get User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users", "1"]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"Jane\",\n  \"last_name\": \"Smith Updated\",\n  \"role\": \"manager\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/users/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users", "1"]
+            }
+          }
+        },
+        {
+          "name": "Toggle User Active Status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/1/toggle-active",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users", "1", "toggle-active"]
+            }
+          }
+        },
+        {
+          "name": "Get User Activity",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/1/activity",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users", "1", "activity"]
+            }
+          }
+        },
+        {
+          "name": "Get User Audit Trail",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/users/1/audit-trail",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "users", "1", "audit-trail"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Invitations",
+      "item": [
+        {
+          "name": "List Invitations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/invitations?page=1&per_page=15",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invitations"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Send Invitation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"newuser@example.com\",\n  \"role\": \"farmer\",\n  \"expires_at\": \"2026-05-20\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/invitations/send",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invitations", "send"]
+            }
+          }
+        },
+        {
+          "name": "Get Pending Invitations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/invitations/pending",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invitations", "pending"]
+            }
+          }
+        },
+        {
+          "name": "Get Invitation by Token",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/v1/invitations/TOKEN_HERE",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invitations", "TOKEN_HERE"]
+            }
+          }
+        },
+        {
+          "name": "Accept Invitation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"NewPassword123!\",\n  \"password_confirmation\": \"NewPassword123!\",\n  \"first_name\": \"New\",\n  \"last_name\": \"User\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/v1/invitations/TOKEN_HERE/accept",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invitations", "TOKEN_HERE", "accept"]
+            }
+          }
+        },
+        {
+          "name": "Delete Invitation",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/v1/invitations/1",
+              "protocol": "https",
+              "host": ["{{base_url}}"],
+              "path": ["v1", "invitations", "1"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ]
+}

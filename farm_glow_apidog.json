@@ -1,0 +1,2121 @@
+{
+  "info": {
+    "name": "Farm Glow API",
+    "description": "Complete Farm Management System API - 9 Modules, 188 Endpoints",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "description": "User authentication and token management",
+      "item": [
+        {
+          "name": "Register Company",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Smith Farms LLC\",\n  \"email\": \"admin@smithfarms.com\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/auth/register-company",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "auth", "register-company"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@smithfarms.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "auth", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/auth/me",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "auth", "me"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/auth/logout",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "auth", "logout"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/auth/refresh-token",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "auth", "refresh-token"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"current_password\": \"password123\",\n  \"password\": \"newpassword456\",\n  \"password_confirmation\": \"newpassword456\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/auth/change-password",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "auth", "change-password"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Farms",
+      "description": "Farm management endpoints",
+      "item": [
+        {
+          "name": "List Farms",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/farms?page=1&per_page=15",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "farms"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "15"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Farm",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"East Valley Farm\",\n  \"total_area\": 750,\n  \"unit\": \"hectares\",\n  \"location\": \"California\",\n  \"description\": \"Secondary farming operation\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/farms",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "farms"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Farm",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/farms/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "farms", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Farm",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Main Farm Updated\",\n  \"total_area\": 600,\n  \"location\": \"Colorado, USA\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/farms/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "farms", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Farm",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/farms/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "farms", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Farm Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/farms/1/summary",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "farms", "1", "summary"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Farm Statistics",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/farms/1/stats",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "farms", "1", "stats"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Fields",
+      "description": "Farm field management",
+      "item": [
+        {
+          "name": "List Fields",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/fields?farm_id=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "fields"],
+              "query": [
+                {
+                  "key": "farm_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Field",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"name\": \"East Field\",\n  \"area\": 150,\n  \"unit\": \"hectares\",\n  \"soil_type\": \"clay\",\n  \"ph_level\": 7.2,\n  \"location\": \"East Section\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/fields",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "fields"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Field",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/fields/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "fields", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Crops",
+      "description": "Crop management and health tracking",
+      "item": [
+        {
+          "name": "List Crops",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/crops?farm_id=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "crops"],
+              "query": [
+                {
+                  "key": "farm_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Crop",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"field_id\": 1,\n  \"name\": \"Corn\",\n  \"variety\": \"Yellow Dent\",\n  \"planting_date\": \"2026-04-01\",\n  \"expected_harvest_date\": \"2026-10-01\",\n  \"expected_yield\": 12000,\n  \"yield_unit\": \"kg\",\n  \"notes\": \"Premium variety\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/crops",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "crops"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Record Crop Health",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"2026-04-20\",\n  \"status\": \"healthy\",\n  \"disease_notes\": \"No visible diseases\",\n  \"pest_notes\": \"Minimal pest activity\",\n  \"general_notes\": \"Crop developing well\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/crops/1/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "crops", "1", "health"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Crop Health Records",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/crops/1/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "crops", "1", "health"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Record Crop Harvest",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"harvest_date\": \"2026-08-15\",\n  \"actual_yield\": 7850,\n  \"yield_unit\": \"kg\",\n  \"quality_grade\": \"A\",\n  \"notes\": \"Good harvest quality\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/crops/1/harvest",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "crops", "1", "harvest"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Crop Yield",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/crops/1/yield",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "crops", "1", "yield"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Livestock",
+      "description": "Livestock management and health tracking",
+      "item": [
+        {
+          "name": "List Livestock",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/livestock?farm_id=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "livestock"],
+              "query": [
+                {
+                  "key": "farm_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Livestock",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"type\": \"sheep\",\n  \"breed\": \"Merino\",\n  \"tag_number\": \"FARM-102\",\n  \"age_months\": 12,\n  \"weight\": 65,\n  \"weight_unit\": \"kg\",\n  \"acquisition_date\": \"2025-06-15\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/livestock",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "livestock"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Record Livestock Health",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"2026-04-20\",\n  \"status\": \"healthy\",\n  \"temperature\": 38.5,\n  \"weight\": 452,\n  \"weight_unit\": \"kg\",\n  \"treatment_notes\": \"Routine checkup\",\n  \"general_notes\": \"Animal in good condition\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/livestock/1/health",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "livestock", "1", "health"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sheds",
+      "description": "Livestock shed management",
+      "item": [
+        {
+          "name": "List Sheds",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/sheds?farm_id=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "sheds"],
+              "query": [
+                {
+                  "key": "farm_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Shed",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"name\": \"Sheep Shed B\",\n  \"type\": \"sheep\",\n  \"capacity\": 200\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/sheds",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "sheds"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Record Shed Cleaning",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"date\": \"2026-04-20\",\n  \"notes\": \"Deep clean completed\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/sheds/1/clean",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "sheds", "1", "clean"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Breeding",
+      "description": "Livestock breeding management",
+      "item": [
+        {
+          "name": "List Breeding Records",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/breeding?farm_id=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "breeding"],
+              "query": [
+                {
+                  "key": "farm_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Breeding Record",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"sire_id\": 5,\n  \"dam_id\": 12,\n  \"breed_date\": \"2026-04-10\",\n  \"expected_birth_date\": \"2026-06-10\",\n  \"notes\": \"Selective breeding program\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/breeding",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "breeding"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Record Birth",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"birth_date\": \"2026-06-08\",\n  \"offspring_count\": 1,\n  \"offspring_type\": \"calf\",\n  \"notes\": \"Healthy calf born\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/breeding/1/birth",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "breeding", "1", "birth"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Workers",
+      "description": "Worker management",
+      "item": [
+        {
+          "name": "List Workers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/workers?farm_id=1&page=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "workers"],
+              "query": [
+                {
+                  "key": "farm_id",
+                  "value": "1"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Worker",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"first_name\": \"Michael\",\n  \"last_name\": \"Brown\",\n  \"email\": \"michael@example.com\",\n  \"phone\": \"+1987654321\",\n  \"position\": \"Field Worker\",\n  \"employment_type\": \"full-time\",\n  \"hiring_date\": \"2026-04-20\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/workers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "workers"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Worker",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/workers/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "workers", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Worker Attendance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/workers/1/attendance",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "workers", "1", "attendance"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Worker Performance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/workers/1/performance",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "workers", "1", "performance"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Worker Payroll",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/workers/1/payroll",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "workers", "1", "payroll"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Schedules",
+      "description": "Worker schedule management",
+      "item": [
+        {
+          "name": "List Schedules",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/schedules?farm_id=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "schedules"],
+              "query": [
+                {
+                  "key": "farm_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Schedule",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"worker_id\": 1,\n  \"farm_id\": 1,\n  \"scheduled_date\": \"2026-04-22\",\n  \"shift\": \"afternoon\",\n  \"start_time\": \"14:00\",\n  \"end_time\": \"22:00\",\n  \"task\": \"Crop monitoring\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/schedules",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "schedules"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Attendance",
+      "description": "Worker attendance tracking",
+      "item": [
+        {
+          "name": "List Attendance Records",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/attendance?worker_id=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "attendance"],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Record Attendance",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"worker_id\": 1,\n  \"attendance_date\": \"2026-04-21\",\n  \"check_in_time\": \"06:00\",\n  \"check_out_time\": \"14:30\",\n  \"status\": \"present\",\n  \"notes\": \"Regular shift\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/attendance/record",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "attendance", "record"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Monthly Attendance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/attendance/monthly?worker_id=1&year=2026&month=4",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "attendance", "monthly"],
+              "query": [
+                {
+                  "key": "worker_id",
+                  "value": "1"
+                },
+                {
+                  "key": "year",
+                  "value": "2026"
+                },
+                {
+                  "key": "month",
+                  "value": "4"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Inventory",
+      "description": "Inventory and stock management",
+      "item": [
+        {
+          "name": "List Inventory Items",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/inventory?farm_id=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "inventory"],
+              "query": [
+                {
+                  "key": "farm_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Inventory Item",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"category_id\": 3,\n  \"name\": \"Nitrogen Fertilizer\",\n  \"sku\": \"FERT-N-001\",\n  \"unit\": \"kg\",\n  \"quantity\": 1000,\n  \"min_quantity\": 200,\n  \"cost_per_unit\": 1.75,\n  \"expiry_date\": \"2026-12-31\",\n  \"location\": \"Storage B\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/inventory",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "inventory"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Low Stock Items",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/inventory/low-stock",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "inventory", "low-stock"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Expired Items",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/inventory/expired",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "inventory", "expired"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Inventory Value",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/inventory/value",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "inventory", "value"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Record Inventory Use",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inventory_item_id\": 1,\n  \"quantity\": 50,\n  \"notes\": \"Used for field A crop treatment\",\n  \"reference_number\": \"USE-2026-04-001\",\n  \"transaction_date\": \"2026-04-20\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/inventory/use",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "inventory", "use"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Record Inventory Restock",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"inventory_item_id\": 1,\n  \"quantity\": 200,\n  \"cost_per_unit\": 2.50,\n  \"notes\": \"Restock from supplier ABC\",\n  \"reference_number\": \"PO-2026-04-001\",\n  \"transaction_date\": \"2026-04-20\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/inventory/restock",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "inventory", "restock"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Inventory Categories",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/inventory/categories",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "inventory", "categories"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Financial",
+      "description": "Financial management and reporting",
+      "item": [
+        {
+          "name": "List Accounts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/accounts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "accounts"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Account",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Equipment Fund\",\n  \"type\": \"savings\",\n  \"opening_balance\": 25000.00,\n  \"currency\": \"USD\",\n  \"description\": \"Dedicated equipment purchase account\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/accounts",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "accounts"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Account Balance",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/accounts/1/balance",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "accounts", "1", "balance"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/transactions?account_id=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "transactions"],
+              "query": [
+                {
+                  "key": "account_id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Transaction",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"account_id\": 1,\n  \"farm_id\": 1,\n  \"type\": \"expense\",\n  \"category\": \"fertilizer\",\n  \"description\": \"Nitrogen fertilizer purchase\",\n  \"amount\": 2500.00,\n  \"reference_number\": \"PO-2026-04-002\",\n  \"transaction_date\": \"2026-04-20\",\n  \"notes\": \"Bulk order discount applied\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/transactions",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "transactions"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Transaction Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/transactions/summary",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "transactions", "summary"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Invoices",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/invoices?status=pending",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "invoices"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "pending"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Invoice",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"client_name\": \"XYZ Company\",\n  \"client_email\": \"contact@xyz.com\",\n  \"description\": \"Wheat delivery - 5000 kg\",\n  \"amount\": 12500.00,\n  \"issue_date\": \"2026-04-20\",\n  \"due_date\": \"2026-05-20\",\n  \"notes\": \"Net 30 payment terms\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/invoices",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "invoices"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Mark Invoice as Paid",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/invoices/1/mark-paid",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "invoices", "1", "mark-paid"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Overdue Invoices",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/invoices/overdue",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "invoices", "overdue"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Budgets",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/budgets",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "budgets"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Budget",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"category\": \"labor\",\n  \"budgeted_amount\": 15000.00,\n  \"month\": 4,\n  \"year\": 2026,\n  \"notes\": \"April payroll and contractor costs\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/budgets",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "budgets"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Budget Summary",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/budgets/summary?month=4&year=2026",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "budgets", "summary"],
+              "query": [
+                {
+                  "key": "month",
+                  "value": "4"
+                },
+                {
+                  "key": "year",
+                  "value": "2026"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "List Financial Reports",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/reports",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "reports"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Generate Financial Report",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"farm_id\": 1,\n  \"type\": \"monthly\",\n  \"month\": 4,\n  \"year\": 2026\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/reports/generate",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "reports", "generate"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User Profile",
+      "description": "User profile and preferences",
+      "item": [
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/users/me",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "users", "me"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"first_name\": \"John\",\n  \"last_name\": \"Smith\",\n  \"phone\": \"+1234567890\",\n  \"avatar_url\": \"https://example.com/new-avatar.jpg\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/users/me",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "users", "me"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Preferences",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/users/me/preferences",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "users", "me", "preferences"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Preferences",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"theme\": \"dark\",\n  \"language\": \"es\",\n  \"timezone\": \"America/Los_Angeles\",\n  \"notifications_enabled\": false\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/users/me/preferences",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "users", "me", "preferences"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Activity",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/users/me/activity",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "users", "me", "activity"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "User Management",
+      "description": "Administrative user management",
+      "item": [
+        {
+          "name": "List Users",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/users?page=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "users"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"manager@smithfarms.com\",\n  \"password\": \"securepass123\",\n  \"password_confirmation\": \"securepass123\",\n  \"first_name\": \"Sarah\",\n  \"last_name\": \"Johnson\",\n  \"phone\": \"+1987654321\",\n  \"roles\": [\"manager\"]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/users",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "users"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/users/2",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "users", "2"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"newfarmer@smithfarms.com\",\n  \"first_name\": \"Michael\",\n  \"last_name\": \"Johnson\",\n  \"phone\": \"+1555999888\",\n  \"roles\": [\"manager\"]\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/users/2",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "users", "2"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/users/2",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "users", "2"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Toggle User Status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/users/2/toggle-active",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "users", "2", "toggle-active"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Audit Trail",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/users/2/audit-trail",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "users", "2", "audit-trail"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Invitations",
+      "description": "User invitations and onboarding",
+      "item": [
+        {
+          "name": "List Invitations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/invitations",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "invitations"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send Invitation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"contractor@example.com\",\n  \"role\": \"farmer\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/invitations/send",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "invitations", "send"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Invitation Details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/invitations/randomtoken1234567890",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "invitations", "randomtoken1234567890"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Accept Invitation",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"newpass123\",\n  \"password_confirmation\": \"newpass123\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Contractor\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8006/api/v1/invitations/randomtoken1234567890/accept",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "invitations", "randomtoken1234567890", "accept"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Pending Invitations",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/invitations/pending",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "invitations", "pending"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Invitation",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8006/api/v1/invitations/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8006",
+              "path": ["api", "v1", "invitations", "1"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "token",
+      "value": "your_jwt_token_here",
+      "type": "string"
+    },
+    {
+      "key": "base_url",
+      "value": "http://localhost:8006/api/v1",
+      "type": "string"
+    }
+  ]
+}
