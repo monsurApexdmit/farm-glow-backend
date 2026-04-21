@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\FarmController;
 use App\Http\Controllers\Api\FieldController;
 use App\Http\Controllers\Api\CropController;
 use App\Http\Controllers\Api\LivestockController;
+use App\Http\Controllers\Api\LivestockTypeController;
 use App\Http\Controllers\Api\LivestockShedController;
 use App\Http\Controllers\Api\BreedingController;
 use App\Http\Controllers\Api\WorkerController;
@@ -53,6 +54,8 @@ Route::prefix("v1")->group(function () {
         Route::apiResource("livestock", LivestockController::class);
         Route::post("livestock/{livestock}/health", [LivestockController::class, "recordHealth"]);
         Route::get("livestock/{livestock}/health", [LivestockController::class, "getHealth"]);
+
+        Route::apiResource("livestock-types", LivestockTypeController::class, ["only" => ["index", "show"]]);
 
         Route::apiResource("sheds", LivestockShedController::class);
         Route::post("sheds/{shed}/clean", [LivestockShedController::class, "recordCleaning"]);

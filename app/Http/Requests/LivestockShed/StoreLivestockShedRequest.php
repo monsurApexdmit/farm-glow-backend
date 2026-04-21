@@ -21,10 +21,12 @@ class StoreLivestockShedRequest extends FormRequest
             "capacity" => "nullable|integer|min:1",
             "length" => "nullable|numeric|min:0",
             "width" => "nullable|numeric|min:0",
+            "height" => "nullable|numeric|min:0",
             "area" => "nullable|numeric|min:0",
             "temperature_min" => "nullable|numeric",
             "temperature_max" => "nullable|numeric",
             "humidity_level" => "nullable|numeric|min:0|max:100",
+            "feed_schedule" => "nullable|string|max:255",
         ];
     }
 }
