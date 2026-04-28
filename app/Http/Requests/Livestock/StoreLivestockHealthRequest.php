@@ -14,7 +14,7 @@ class StoreLivestockHealthRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "health_status" => "required|in:healthy,sick,injured,recovering",
+            "health_status" => "required|in:healthy,sick,treatment,quarantine,injured,recovering",
             "observations" => "nullable|string",
             "treatment" => "nullable|string",
             "disease_name" => "nullable|string|max:100",

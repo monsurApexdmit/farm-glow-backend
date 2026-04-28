@@ -26,6 +26,10 @@ class UpdateLivestockShedRequest extends FormRequest
             "humidity_level" => "nullable|numeric|min:0|max:100",
             "status" => "nullable|in:operational,maintenance,inactive",
             "feed_schedule" => "nullable|string|max:255",
+            "grid_row" => "nullable|integer|min:0|max:19",
+            "grid_col" => "nullable|integer|min:0|max:19",
+            "grid_row_span" => "nullable|integer|min:1|max:10",
+            "grid_col_span" => "nullable|integer|min:1|max:10",
         ];
     }
 }

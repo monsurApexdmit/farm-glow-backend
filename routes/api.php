@@ -51,6 +51,7 @@ Route::prefix("v1")->group(function () {
         Route::post("crops/{crop}/harvest", [CropController::class, "recordHarvest"]);
         Route::get("crops/{crop}/yield", [CropController::class, "getYield"]);
 
+        Route::get("livestock/inventory-summary", [LivestockController::class, "inventorySummary"]);
         Route::apiResource("livestock", LivestockController::class);
         Route::post("livestock/{livestock}/health", [LivestockController::class, "recordHealth"]);
         Route::get("livestock/{livestock}/health", [LivestockController::class, "getHealth"]);

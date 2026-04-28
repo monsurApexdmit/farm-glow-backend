@@ -29,6 +29,10 @@ class LivestockShed extends Model
         "is_active",
         "created_by",
         "deleted_by",
+        "grid_row",
+        "grid_col",
+        "grid_row_span",
+        "grid_col_span",
     ];
 
     protected $casts = [
